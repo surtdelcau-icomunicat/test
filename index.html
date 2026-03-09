@@ -11,138 +11,248 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root { --cyan: #06b6d4; --dark: #050505; }
-        body { font-family: 'Space Grotesk', sans-serif; background-color: var(--dark); color: #94a3b8; overflow-x: hidden; }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: var(--dark); color: #94a3b8; overflow-x: hidden; scroll-behavior: smooth; }
         .font-mono { font-family: 'JetBrains+Mono', monospace; }
         
-        /* Grid de fondo técnico */
         .bg-grid {
-            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        .reveal { opacity: 0; transform: translateY(40px); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.1s ease; }
         
-        /* Animación de escaneo */
         .scanline {
             width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--cyan), transparent);
             position: absolute; top: 0; left: 0;
-            animation: scan 4s linear infinite;
-            opacity: 0.3; z-index: 20;
+            animation: scan 6s linear infinite;
+            opacity: 0.2; z-index: 20;
         }
 
-        @keyframes scan {
-            0% { top: 0%; } 100% { top: 100%; }
-        }
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
         .hero-title { line-height: 0.85; letter-spacing: -0.04em; }
         
         .btn-glitch {
             position: relative; overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-glitch:hover {
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
-            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
         }
+
+        details[open] summary span { transform: rotate(45deg); }
+        .mask-text { -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
     </style>
 </head>
 <body>
-    <div class="fixed inset-0 bg-grid pointer-events-none opacity-40"></div>
+    <div class="fixed inset-0 bg-grid pointer-events-none"></div>
     <div class="fixed inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
 
-    <section class="relative min-h-screen flex flex-col justify-center px-6 lg:px-24 overflow-hidden border-b border-white/10">
+    <section class="relative min-h-screen flex flex-col justify-center px-6 lg:px-24 overflow-hidden border-b border-white/5">
         <div class="scanline"></div>
-        
-        <div class="absolute top-10 right-10 hidden lg:block font-mono text-[10px] text-cyan-500/50 space-y-1">
-            <p>SYSTEM_STATUS: OPTIMIZED</p>
-            <p>CORE_ENGINE: ACTIVE</p>
-            <p>LOCATION: 41.3851° N, 2.1734° E</p>
+        <div class="absolute top-10 right-10 hidden lg:block font-mono text-[10px] text-cyan-500/40 space-y-1 z-30">
+            <p>CORE_STATUS: ACTIVE</p>
+            <p>LATENCY: 14MS</p>
+            <p>UI_REV: 2026.4</p>
         </div>
 
         <div class="relative z-10 grid lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-8">
-                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-sm bg-white/5 border border-white/10 mb-8">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-sm bg-white/5 border border-white/10 mb-10">
                     <span class="w-2 h-2 bg-cyan-500 rounded-full animate-ping"></span>
-                    <span class="text-xs font-mono uppercase tracking-[0.3em] text-white">Ingeniería Digital B2B</span>
+                    <span class="text-[10px] font-mono uppercase tracking-[0.4em] text-white">Ingeniería Digital Industrial</span>
                 </div>
                 
-                <h1 class="hero-title text-6xl md:text-[120px] font-bold text-white mb-8">
-                    CRECIMIENTO <br>
-                    <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">CON PRECISIÓN</span><br>
-                    <span class="text-cyan-500">INDUSTRIAL.</span>
+                <h1 class="hero-title text-6xl md:text-[110px] font-bold text-white mb-8">
+                    ADQUISICIÓN <br>
+                    <span class="mask-text">SISTEMÁTICA</span><br>
+                    <span class="text-cyan-500">B2B.</span>
                 </h1>
 
-                <p class="text-lg md:text-2xl text-slate-400 max-w-2xl mb-12 leading-relaxed font-light">
-                    Transformamos plantas de producción en máquinas de captación digital. <span class="text-white font-medium">SEO técnico, SEM de alta conversión y desarrollo web industrial</span> sin adornos innecesarios.
+                <p class="text-xl md:text-2xl text-slate-400 max-w-2xl mb-12 leading-relaxed font-light">
+                    Ayudamos a fábricas y PyMEs industriales a captar más clientes mediante <span class="text-white">SEO técnico, SEM y desarrollo de alto rendimiento.</span>
                 </p>
 
-                <div class="flex flex-wrap gap-6 items-center">
+                <div class="flex flex-wrap gap-8 items-center">
                     <a href="#contacto" class="btn-glitch px-12 py-6 bg-cyan-600 text-white font-bold uppercase tracking-widest text-xs">
                         Reservar consulta
                     </a>
                     <div class="flex flex-col">
-                        <span class="text-white font-bold text-lg leading-none">28 Reseñas</span>
-                        <span class="text-cyan-500 text-[10px] font-mono tracking-tighter italic">5.0 GOOGLE SATISFACTION</span>
+                        <span class="text-white font-bold text-xl leading-none">28 Reseñas</span>
+                        <span class="text-cyan-500 text-[10px] font-mono tracking-widest uppercase mt-1 opacity-70">Google 5.0 ★</span>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-4 relative h-[400px] lg:h-[600px] hidden md:block">
-                <div class="absolute inset-0 border border-cyan-500/30 m-4 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" 
-                     class="w-full h-full object-cover grayscale brightness-50 contrast-125" alt="Hardware">
-                <div class="absolute bottom-8 -left-8 bg-dark border border-white/10 p-6 z-20 shadow-2xl">
-                    <div class="text-4xl font-bold text-white">+100</div>
-                    <div class="text-[10px] font-mono uppercase text-cyan-500">Fábricas digitalizadas</div>
+            <div class="lg:col-span-4 relative h-[500px] hidden lg:block">
+                <div class="absolute inset-0 border border-cyan-500/20 m-6 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" 
+                     class="w-full h-full object-cover grayscale brightness-[0.3] contrast-125" alt="Industrial Automation">
+                <div class="absolute -bottom-6 -left-6 bg-[#080808] border border-white/10 p-8 z-20 shadow-2xl">
+                    <div class="text-5xl font-bold text-white font-mono">+100</div>
+                    <div class="text-[10px] font-mono uppercase text-cyan-500 tracking-widest mt-2">Empresas Activas</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-6 lg:px-24 bg-white/[0.02] border-b border-white/5 flex flex-wrap justify-between gap-8 items-center">
-        <span class="text-xs font-mono tracking-widest opacity-50 uppercase">Trusted Partners</span>
-        <div class="flex gap-12 grayscale opacity-40 overflow-hidden">
-            <span class="text-xl font-bold italic tracking-tighter text-white">INDUSTRY_CO</span>
-            <span class="text-xl font-bold italic tracking-tighter text-white">STEEL_WORK</span>
-            <span class="text-xl font-bold italic tracking-tighter text-white">TECH_LOGISTICS</span>
-            <span class="text-xl font-bold italic tracking-tighter text-white">PRO_FAB</span>
+    <section class="py-32 px-6 lg:px-24 relative overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-24">
+            <div class="reveal">
+                <h2 class="text-xs font-mono text-cyan-500 uppercase tracking-widest mb-6 font-bold">// El Problema</h2>
+                <h3 class="text-4xl font-bold text-white mb-10 italic">La invisibilidad digital detiene tu producción.</h3>
+                <div class="space-y-6">
+                    <div class="p-6 bg-red-500/5 border border-red-500/10 rounded-sm">
+                        <p class="text-slate-300"><strong class="text-red-500 font-mono mr-2">X</strong> Tu competencia está captando los leads de Google que te pertenecen.</p>
+                    </div>
+                    <div class="p-6 bg-red-500/5 border border-red-500/10 rounded-sm">
+                        <p class="text-slate-300"><strong class="text-red-500 font-mono mr-2">X</strong> Tu web actual no transmite la potencia real de tu fábrica.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal bg-white/[0.02] border border-white/10 p-12 relative">
+                <div class="absolute top-0 right-0 p-4 font-mono text-[10px] opacity-20 text-cyan-500">SOL_SYSTEM_v2</div>
+                <h2 class="text-xs font-mono text-cyan-500 uppercase tracking-widest mb-6 font-bold">// Nuestra Solución</h2>
+                <h3 class="text-4xl font-bold text-white mb-10">Escalabilidad Industrial.</h3>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4 text-slate-300">
+                        <span class="text-cyan-500 mt-1">●</span>
+                        <span><strong>SEO Técnico:</strong> Posicionamos tus servicios ante directores de compras.</span>
+                    </li>
+                    <li class="flex items-start gap-4 text-slate-300">
+                        <span class="text-cyan-500 mt-1">●</span>
+                        <span><strong>SEM B2B:</strong> Campañas de Google Ads con ROI positivo garantizado.</span>
+                    </li>
+                    <li class="flex items-start gap-4 text-slate-300">
+                        <span class="text-cyan-500 mt-1">●</span>
+                        <span><strong>Web Engine:</strong> Portales rápidos, seguros y diseñados para convertir.</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section id="metodo" class="py-32 px-6 lg:px-24">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-bold text-white mb-20">Protocolo Operativo</h2>
-            <div class="space-y-12">
-                <div class="reveal flex gap-8 border-b border-white/5 pb-12">
-                    <div class="text-5xl font-black text-cyan-900 font-mono">01</div>
-                    <div>
-                        <h4 class="text-2xl font-bold text-white mb-4 italic">Auditoría Gratis</h4>
-                        <p>No perdemos el tiempo. Analizamos tu web y te decimos cuánto dinero estás dejando en la mesa.</p>
-                    </div>
-                </div>
-                </div>
+    <section class="py-32 px-6 lg:px-24 bg-white/[0.01] border-y border-white/5">
+        <h2 class="text-5xl font-bold text-white mb-24 text-center tracking-tighter">Protocolo de Crecimiento</h2>
+        <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <div class="reveal text-center group">
+                <div class="text-7xl font-bold text-white/5 mb-6 group-hover:text-cyan-500/20 transition-colors font-mono">01</div>
+                <h4 class="text-xl font-bold text-white mb-4">Auditoría Técnica</h4>
+                <p class="text-sm leading-relaxed">Analizamos tu infraestructura digital y la de tu competencia en 48h.</p>
+            </div>
+            <div class="reveal text-center group" style="transition-delay: 100ms;">
+                <div class="text-7xl font-bold text-white/5 mb-6 group-hover:text-cyan-500/20 transition-colors font-mono">02</div>
+                <h4 class="text-xl font-bold text-white mb-4">Implementación</h4>
+                <p class="text-sm leading-relaxed">Desplegamos tu nueva estrategia de captación y optimizamos tu web.</p>
+            </div>
+            <div class="reveal text-center group" style="transition-delay: 200ms;">
+                <div class="text-7xl font-bold text-white/5 mb-6 group-hover:text-cyan-500/20 transition-colors font-mono">03</div>
+                <h4 class="text-xl font-bold text-white mb-4">Escalado</h4>
+                <p class="text-sm leading-relaxed">Análisis de datos semanal para maximizar la entrada de nuevos clientes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 lg:px-24">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="reveal text-center">
+                <p class="text-5xl font-bold text-white mb-2">10+</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-cyan-500">Años de experiencia</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-5xl font-bold text-white mb-2">+100</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-cyan-500">Empresas industriales</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-5xl font-bold text-white mb-2">5.0</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-cyan-500">Valoración media</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-5xl font-bold text-white mb-2">24/7</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-cyan-500">Soporte técnico</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 lg:px-24 relative">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="reveal p-10 border border-white/10 hover:border-cyan-500/50 transition-all bg-[#080808]">
+                <h4 class="text-lg font-bold text-white mb-4 uppercase tracking-widest">Auditoría</h4>
+                <div class="text-3xl font-bold text-cyan-400 mb-8 font-mono">GRATIS</div>
+                <p class="text-sm mb-10 opacity-60">Análisis SEO y SEM profundo para detectar fugas de leads.</p>
+                <a href="#contacto" class="block text-center py-4 border border-white/10 hover:bg-white/5 text-[10px] font-bold uppercase tracking-widest transition-all">Solicitar</a>
+            </div>
+            <div class="reveal p-10 border border-cyan-600 bg-cyan-600/[0.03] scale-105 z-10 shadow-2xl">
+                <h4 class="text-lg font-bold text-white mb-4 uppercase tracking-widest">Partner Integral</h4>
+                <div class="text-3xl font-bold text-white mb-8 font-mono italic">B2B Core</div>
+                <p class="text-sm mb-10 text-slate-300">Gestión completa de SEO, SEM, RRSS y Desarrollo Web.</p>
+                <a href="#contacto" class="block text-center py-4 bg-cyan-600 hover:bg-cyan-500 text-[10px] font-bold uppercase tracking-widest text-white transition-all">Reservar ahora</a>
+            </div>
+            <div class="reveal p-10 border border-white/10 hover:border-cyan-500/50 transition-all bg-[#080808]">
+                <h4 class="text-lg font-bold text-white mb-4 uppercase tracking-widest">Web Engine</h4>
+                <div class="text-3xl font-bold text-cyan-400 mb-8 font-mono">Desde 1.5k</div>
+                <p class="text-sm mb-10 opacity-60">Diseño y desarrollo de páginas de aterrizaje industriales.</p>
+                <a href="#contacto" class="block text-center py-4 border border-white/10 hover:bg-white/5 text-[10px] font-bold uppercase tracking-widest transition-all">Ver info</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 lg:px-24 bg-white/[0.01]">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 italic border-l-4 border-cyan-600 pl-6 uppercase tracking-tighter">Consultas Técnicas</h2>
+            <div class="space-y-4">
+                <details class="group border-b border-white/5 pb-4">
+                    <summary class="list-none cursor-pointer flex justify-between items-center text-white font-bold py-4 hover:text-cyan-400 transition-colors">
+                        ¿Cómo aseguran leads de calidad en el sector B2B?
+                        <span class="text-cyan-500 transition-transform duration-300">+</span>
+                    </summary>
+                    <p class="text-slate-400 text-sm leading-relaxed pb-4">Filtramos el tráfico mediante palabras clave técnicas que solo directores de compras e ingenieros utilizan, evitando el tráfico residual.</p>
+                </details>
+                <details class="group border-b border-white/5 pb-4">
+                    <summary class="list-none cursor-pointer flex justify-between items-center text-white font-bold py-4 hover:text-cyan-400 transition-colors">
+                        ¿Qué incluye la auditoría gratuita?
+                        <span class="text-cyan-500 transition-transform duration-300">+</span>
+                    </summary>
+                    <p class="text-slate-400 text-sm leading-relaxed pb-4">Un análisis de 25 puntos de tu web, estudio de palabras clave de tu competencia y un mapa de ruta de inversión en SEM.</p>
+                </details>
+            </div>
         </div>
     </section>
 
     <footer id="contacto" class="py-32 px-6 lg:px-24 text-center border-t border-white/10">
         <h2 class="text-6xl md:text-8xl font-bold text-white mb-12 tracking-tighter">¿OPERAMOS?</h2>
-        <button class="px-20 py-8 bg-white text-black font-black uppercase tracking-[0.4em] text-xs hover:bg-cyan-500 hover:text-white transition-all">
-            Solicitar Auditoría Gratis
+        <p class="text-slate-400 mb-16 max-w-xl mx-auto">Solicita tu auditoría ahora. No somos comerciales, somos partners de tu crecimiento industrial.</p>
+        <button class="px-20 py-8 bg-white text-black font-black uppercase tracking-[0.4em] text-xs hover:bg-cyan-500 hover:text-white transition-all shadow-2xl">
+            Pedir auditoría gratis
         </button>
+        <div class="mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between text-[10px] font-mono uppercase tracking-[0.3em] text-slate-700">
+            <p>© 2026 Industrial Digital Partners</p>
+            <p>Precisión Digital para el Sector Industrial</p>
+        </div>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        // Animación Hero
-        gsap.from(".hero-title", { duration: 1.5, y: 100, opacity: 0, ease: "power4.out", delay: 0.5 });
+        
+        // Animaciones Hero
+        gsap.from(".hero-title", { duration: 1.5, y: 80, opacity: 0, ease: "power4.out", delay: 0.2 });
+        gsap.from(".lg:col-span-4", { duration: 1.5, scale: 0.9, opacity: 0, ease: "power4.out", delay: 0.5 });
         
         // Animaciones Scroll
         gsap.utils.toArray('.reveal').forEach((el) => {
             gsap.to(el, {
-                scrollTrigger: { trigger: el, start: "top 85%" },
-                opacity: 1, y: 0, duration: 1.2, ease: "power4.out"
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 88%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power4.out"
             });
         });
     </script>

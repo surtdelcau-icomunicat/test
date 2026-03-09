@@ -1,0 +1,212 @@
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const IndustrialLanding = () => {
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Fade in animations para secciones
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.from(el, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          }
+        });
+      });
+    }, mainRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={mainRef} className="bg-[#0a0a0c] text-slate-300 font-sans selection:bg-cyan-500/30">
+      {/* Efecto de grano/ruido sutil en el fondo */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+
+      {/* 1. HERO SECTION */}
+      <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-24 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <img 
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070" 
+            alt="Tech Industrial" 
+            className="w-full h-full object-cover grayscale"
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">Partner Digital Industrial</span>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Digitalizamos la <span className="text-cyan-400">capacidad productiva</span> de tu PyME.
+          </h1>
+          <p className="text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed">
+            Estrategias de SEO, SEM y Desarrollo Web diseñadas específicamente para fábricas y empresas del sector industrial que buscan escalabilidad real.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <button className="px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition-all transform hover:-translate-y-0.5 active:scale-95">
+              Reservar consulta
+            </button>
+            <button className="px-8 py-4 border border-white/10 hover:bg-white/5 text-white transition-all">
+              Ver metodología
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. PROBLEMA VS SOLUCIÓN */}
+      <section className="py-24 px-6 lg:px-24 reveal">
+        <div className="grid lg:grid-cols-2 gap-16 border-t border-white/5 pt-16">
+          <div>
+            <h3 className="text-xs font-mono uppercase text-cyan-500 mb-4 tracking-tighter">El Reto</h3>
+            <h2 className="text-3xl text-white font-bold mb-8 italic">El mercado industrial ya no se mueve solo por ferias.</h2>
+            <ul className="space-y-6">
+              <li className="flex gap-4 opacity-70">
+                <span className="text-red-500 font-mono">✕</span>
+                <p>Webs obsoletas que no transmiten la robustez de tu infraestructura.</p>
+              </li>
+              <li className="flex gap-4 opacity-70">
+                <span className="text-red-500 font-mono">✕</span>
+                <p>Presupuestos en Ads desperdiciados en tráfico no cualificado.</p>
+              </li>
+              <li className="flex gap-4 opacity-70">
+                <span className="text-red-500 font-mono">✕</span>
+                <p>Invisibilidad en Google ante ingenieros y directores de compras.</p>
+              </li>
+            </ul>
+          </div>
+          <div className="bg-white/5 p-8 rounded-sm border border-white/10">
+            <h3 className="text-xs font-mono uppercase text-cyan-500 mb-4 tracking-tighter">La Solución</h3>
+            <h2 className="text-3xl text-white font-bold mb-8">Estructura digital de alto rendimiento.</h2>
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <span className="text-cyan-400 font-mono">✓</span>
+                <p>SEO Técnico Industrial: Captamos al usuario que busca soluciones técnicas.</p>
+              </li>
+              <li className="flex gap-4">
+                <span className="text-cyan-400 font-mono">✓</span>
+                <p>Desarrollo Web: Portales rápidos, seguros y enfocados a la conversión B2B.</p>
+              </li>
+              <li className="flex gap-4">
+                <span className="text-cyan-400 font-mono">✓</span>
+                <p>Estrategia 360: Redes sociales y SEM con enfoque en ROI, no en likes.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CÓMO FUNCIONA (TIMELINE) */}
+      <section className="py-24 px-6 lg:px-24 bg-white/[0.02] reveal">
+        <h2 className="text-4xl font-bold text-white mb-16 text-center">Protocolo de Crecimiento</h2>
+        <div className="grid md:grid-cols-3 gap-8 relative">
+          {[
+            { step: "01", title: "Diagnóstico", desc: "Auditoría profunda de tu presencia digital actual y análisis de competencia." },
+            { step: "02", title: "Implementación", desc: "Despliegue de activos web y campañas de captación de alta precisión." },
+            { step: "03", title: "Optimización", desc: "Escalado basado en datos reales y mejora continua de la tasa de conversión." }
+          ].map((item, i) => (
+            <div key={i} className="relative p-8 border border-white/10 bg-[#0c0c0e]">
+              <span className="text-5xl font-mono text-cyan-900 absolute top-4 right-4 font-bold">{item.step}</span>
+              <h4 className="text-xl text-white font-bold mb-4 relative z-10">{item.title}</h4>
+              <p className="text-slate-400 relative z-10 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. EVIDENCIA (DATOS) */}
+      <section className="py-20 border-y border-white/5 reveal">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6 lg:px-24 text-center">
+          <div>
+            <div className="text-4xl font-bold text-white">+100</div>
+            <div className="text-xs font-mono uppercase mt-2 text-cyan-500">Empresas impulsadas</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-white">10+</div>
+            <div className="text-xs font-mono uppercase mt-2 text-cyan-500">Años de experiencia</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-white">5.0</div>
+            <div className="text-xs font-mono uppercase mt-2 text-cyan-500">28 Reseñas en Google</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-white">100%</div>
+            <div className="text-xs font-mono uppercase mt-2 text-cyan-500">Enfoque B2B</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SERVICIOS / PLANES */}
+      <section className="py-24 px-6 lg:px-24 reveal">
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="p-8 border border-white/10 hover:border-cyan-500/50 transition-colors">
+            <h4 className="text-xl font-bold text-white mb-4 italic">Auditoría Digital</h4>
+            <p className="text-slate-400 mb-6 text-sm">Análisis de visibilidad y rendimiento técnico para detectar fugas de clientes.</p>
+            <div className="text-2xl font-bold text-cyan-400 mb-6">GRATIS</div>
+            <button className="w-full py-3 border border-white/20 text-white hover:bg-white/5 transition-all text-sm uppercase tracking-widest">Solicitar ahora</button>
+          </div>
+          <div className="p-8 border border-cyan-500 bg-cyan-500/5 scale-105 shadow-[0_0_30px_rgba(6,182,212,0.1)]">
+            <h4 className="text-xl font-bold text-white mb-4 italic">Partner Integral</h4>
+            <p className="text-slate-300 mb-6 text-sm">SEO, SEM, RRSS y Desarrollo Web bajo una única estrategia coordinada.</p>
+            <div className="text-2xl font-bold text-white mb-6">Personalizado</div>
+            <button className="w-full py-3 bg-cyan-600 text-white hover:bg-cyan-500 transition-all text-sm font-bold uppercase tracking-widest">Reservar consulta</button>
+          </div>
+          <div className="p-8 border border-white/10 hover:border-cyan-500/50 transition-colors">
+            <h4 className="text-xl font-bold text-white mb-4 italic">Web Industrial</h4>
+            <p className="text-slate-400 mb-6 text-sm">Desarrollo de landing pages o catálogos optimizados para captación técnica.</p>
+            <div className="text-2xl font-bold text-cyan-400 mb-6">Desde 1.5k€</div>
+            <button className="w-full py-3 border border-white/20 text-white hover:bg-white/5 transition-all text-sm uppercase tracking-widest">Ver ejemplos</button>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FAQ */}
+      <section className="py-24 px-6 lg:px-24 bg-[#08080a] reveal">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center italic font-mono">Consultas Técnicas</h2>
+          <div className="space-y-4">
+            {[
+              { q: "¿Por qué el sector industrial necesita un SEO diferente?", a: "Porque no buscamos volumen, buscamos precisión técnica. Tus clientes usan términos específicos de ingeniería y logística." },
+              { q: "¿Cuánto tardan en verse los resultados?", a: "Las campañas de SEM son inmediatas, mientras que el SEO industrial suele mostrar tracción sólida a partir del 4º mes." },
+              { q: "¿Trabajáis con mi CRM actual?", a: "Sí, integramos todos los leads directamente en tu flujo de ventas actual (Salesforce, HubSpot, SAP)." },
+              { q: "¿La auditoría gratis tiene algún compromiso?", a: "Ninguno. Analizamos tus datos y te entregamos un mapa de ruta. Tú decides si lo ejecutas con nosotros." }
+            ].map((faq, i) => (
+              <details key={i} className="group border-b border-white/10 pb-4">
+                <summary className="list-none cursor-pointer flex justify-between items-center text-white font-medium py-4">
+                  {faq.q}
+                  <span className="text-cyan-500 group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p className="text-slate-400 text-sm leading-relaxed pb-4">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. CIERRE / FOOTER */}
+      <footer className="py-24 px-6 lg:px-24 border-t border-white/10 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">¿Listo para digitalizar tu ingeniería de ventas?</h2>
+        <p className="text-slate-400 mb-10 max-w-xl mx-auto italic font-mono text-sm uppercase tracking-widest">
+          No somos una agencia creativa. Somos ingenieros de captación digital.
+        </p>
+        <button className="px-12 py-5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition-all shadow-lg shadow-cyan-500/20">
+          Reservar mi consulta gratuita
+        </button>
+        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-slate-600 uppercase tracking-widest font-mono">
+          <p>© 2026 Industrial Digital Partners</p>
+          <p className="mt-4 md:mt-0 italic opacity-50">Built for scale. High availability.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default IndustrialLanding;
